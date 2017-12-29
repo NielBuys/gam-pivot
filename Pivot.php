@@ -97,7 +97,7 @@ class Pivot
         return $this;
     }
 
-    const TOTAL = "TOTAL";
+    const TOTAL = "zz TOTAL zz";
     private $_splits = array();
 
     public function fetch($fetchType=null)
@@ -116,10 +116,10 @@ class Pivot
                         } elseif ($item instanceof Pivot_Count) {
                             $tmpCount[$k0][$reg[$split]][(isset($reg[$column]) ? $reg[$column] : null)][$item->getKey()]++;
                         }
-						if (isset($tmp[$k0][$reg[$split]][(isset($reg[$column]) ? $reg[$column] : null)][$item]) === false)
-						{
-							$tmp[$k0][$reg[$split]][(isset($reg[$column]) ? $reg[$column] : null)][$item] = null;
-						}
+			if (isset($tmp[$k0][$reg[$split]][(isset($reg[$column]) ? $reg[$column] : null)][$item]) === false)
+			{
+				$tmp[$k0][$reg[$split]][(isset($reg[$column]) ? $reg[$column] : null)][$item] = null;
+			}
 						$tmp[$k0][$reg[$split]][(isset($reg[$column]) ? $reg[$column] : null)][$item] += $reg[$item];						
                         $this->_splits[$reg[$split]][(isset($reg[$column]) ? $reg[$column] : null)][$item] = $item;
                     }
@@ -175,6 +175,7 @@ class Pivot
         $out = array();
         $cont = 0;
         $fullTotal  = array();
+		$i = null;
         switch (count($this->_pivotOn)) {
             case 1:
                 foreach ($tmp as $p0 => $p0Values) {
@@ -205,9 +206,17 @@ class Pivot
                                 
                                 $_out["{$split}"] = $value;
                                 if ($this->_lineTotal) {
+									if (isset($_lineTotal[$k]) === false)
+									{
+										$_lineTotal[$k] = null;
+									}
                                     $_lineTotal[$k] += $value;
                                 }
                                 if ($this->_fullTotal) {
+									if (isset($fullTotal[$split][$col][$k]) === false)
+									{
+										$fullTotal[$split][$col][$k] = null;
+									}
                                     $fullTotal[$split][$col][$k] += $value;
                                 }
                             }
@@ -252,6 +261,10 @@ class Pivot
                                     }
                                     $_out["{$split}"] = $value;
                                     if ($this->_lineTotal) {
+										if (isset($_lineTotal[$k]) === false)
+										{
+											$_lineTotal[$k] = null;
+										}
                                         $_lineTotal[$k] += $value;
                                     }
                                     if ($this->_pivotTotal) {
@@ -295,7 +308,11 @@ class Pivot
                                     $value = ($_k instanceof Pivot_Callback) ? 
                                         $_k->cbk($p0Total[$split][$col]) : $p0Total[$split][$col][$k];
                                     $_out["{$split}"] = $value;
-                                    $_lineTotal[$k] += $value;
+ 									if (isset($_lineTotal[$k]) === false)
+									{
+										$_lineTotal[$k] = null;
+									}                                   
+									$_lineTotal[$k] += $value;
                                 }
                             }
                         }
@@ -342,7 +359,11 @@ class Pivot
                                         }
                                         $_out["{$split}"] = $value;
                                         if ($this->_lineTotal) {
-                                            $_lineTotal[$k] += $value;
+											if (isset($_lineTotal[$k]) === false)
+											{
+												$_lineTotal[$k] = null;
+											}                                            
+											$_lineTotal[$k] += $value;
                                         }
                                         if ($this->_pivotTotal) {
                                             $p0Total[$split][$col][$k] += $value;
@@ -387,7 +408,11 @@ class Pivot
                                     $value = ($_k instanceof Pivot_Callback) ? 
                                         $_k->cbk($p0Total[$split][$col]) : $p0Total[$split][$col][$k];
                                     $_out["{$split}"] = $value;
-                                    $_lineTotal[$k] += $value;
+									if (isset($_lineTotal[$k]) === false)
+									{
+										$_lineTotal[$k] = null;
+									}                                    
+									$_lineTotal[$k] += $value;
                                 }
                             }
                         }
@@ -424,7 +449,11 @@ class Pivot
                                     $value = ($_k instanceof Pivot_Callback) ? 
                                         $_k->cbk($p1Total[$split][$col]) : $p1Total[$split][$col][$k];
                                     $_out["{$split}"] = $value;
-                                    $_lineTotal[$k] += $value;
+									if (isset($_lineTotal[$k]) === false)
+									{
+										$_lineTotal[$k] = null;
+									}                                    
+									$_lineTotal[$k] += $value;
                                 }
                             }
                         }
@@ -463,7 +492,11 @@ class Pivot
                         $value = ($_k instanceof Pivot_Callback) ? 
                             $_k->cbk($fullTotal[$split][$col]) : $fullTotal[$split][$col][$k];
                         $_out["{$split}"] = $value;
-                        $_lineTotal[$k] += $value;
+						if (isset($_lineTotal[$k]) === false)
+						{
+							$_lineTotal[$k] = null;
+						}                        
+						$_lineTotal[$k] += $value;
                     }
                 }
             }
