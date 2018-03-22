@@ -279,7 +279,11 @@ class Pivot
                                         $p0Total[$split][$col][$k] += $value;
                                     }
                                     if ($this->_fullTotal) {
-                                        $fullTotal[$split][$col][$k] += $value;
+										if (isset($fullTotal[$split][$col][$k]) === false)
+										{
+											$fullTotal[$split][$col][$k] = null;
+										}
+										$fullTotal[$split][$col][$k] += $value;
                                     }
                                 }
                             }
@@ -289,7 +293,7 @@ class Pivot
                                 $k = ($_k instanceof Pivot_Callback || $_k instanceof Pivot_Count) ? $_k->getKey() : $_k;
                                 $value = ($_k instanceof Pivot_Callback) ? 
                                     $_k->cbk($_lineTotal) : $_lineTotal[$k];
-                                $_out[self::TOTAL . "_{$k}"] = $value;
+                                $_out[self::TOTAL] = $value;
                             }
                         }
                         $out[] = $_out;
@@ -329,7 +333,7 @@ class Pivot
                                 $k = ($_k instanceof Pivot_Callback || $_k instanceof Pivot_Count) ? $_k->getKey() : $_k;
                                 $value = ($_k instanceof Pivot_Callback) ? 
                                     $_k->cbk($_lineTotal) : $_lineTotal[$k];
-                                $_out[self::TOTAL . "_{$k}"] = $_lineTotal[$k];
+                                $_out[self::TOTAL] = $_lineTotal[$k];
                             }
                         }
                         $out[] = $_out;
@@ -382,7 +386,11 @@ class Pivot
                                             $p1Total[$split][$col][$k] += $value;
                                         }
                                         if ($this->_fullTotal) {
-                                            $fullTotal[$split][$col][$k] += $value;
+											if (isset($fullTotal[$split][$col][$k]) === false)
+											{
+												$fullTotal[$split][$col][$k] = null;
+											}   
+											$fullTotal[$split][$col][$k] += $value;
                                         }
                                     }
                                 }
@@ -392,7 +400,7 @@ class Pivot
                                     $k = ($_k instanceof Pivot_Callback || $_k instanceof Pivot_Count) ? $_k->getKey() : $_k;
                                     $value = ($_k instanceof Pivot_Callback) ? 
                                         $_k->cbk($_lineTotal) : $_lineTotal[$k];
-                                    $_out[self::TOTAL . "_{$k}"] = $value;
+                                    $_out[self::TOTAL] = $value;
                                 }
                             }
                             $out[] = $_out;
@@ -433,7 +441,7 @@ class Pivot
                                 $k = ($_k instanceof Pivot_Callback || $_k instanceof Pivot_Count) ? $_k->getKey() : $_k;
                                 $value = ($_k instanceof Pivot_Callback) ? 
                                     $_k->cbk($_lineTotal) : $_lineTotal[$k];
-                                $_out[self::TOTAL . "_{$k}"] = $value;
+                                $_out[self::TOTAL] = $value;
                             }
                         }
                         $out[] = $_out;
@@ -474,7 +482,7 @@ class Pivot
                                 $k = ($_k instanceof Pivot_Callback || $_k instanceof Pivot_Count) ? $_k->getKey() : $_k;
                                 $value = ($_k instanceof Pivot_Callback) ? 
                                     $_k->cbk($_lineTotal) : $_lineTotal[$k];
-                                $_out[self::TOTAL . "_{$k}"] = $value;
+                                $_out[self::TOTAL] = $value;
                             }
                         }
                         $out[] = $_out;
@@ -516,7 +524,7 @@ class Pivot
                 foreach ($this->_columnValues as $_k) {
                     $k = ($_k instanceof Pivot_Callback || $_k instanceof Pivot_Count) ? $_k->getKey() : $_k;
                     $value = ($_k instanceof Pivot_Callback) ? $_k->cbk($_lineTotal) : $_lineTotal[$k];
-                    $_out[self::TOTAL . "_{$k}"] = $value;
+                    $_out[self::TOTAL] = $value;
                 }
             }
             $out[] = $_out;
