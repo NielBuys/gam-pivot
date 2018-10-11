@@ -189,6 +189,10 @@ class Pivot
                     $_out[$this->_pivotOn[0]] = $p0;
 
                     foreach (array_keys($this->_splits) as $split) {
+                        if (isset($p0Values[$split]) === false)
+						{
+							$p0Values[$split] = null;
+						}
                         $cols = $p0Values[$split];
 
                         foreach (array_keys($this->_splits[$split]) as $col) {
