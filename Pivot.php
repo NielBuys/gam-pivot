@@ -536,7 +536,7 @@ class Pivot
     								$cols = $p3Values[$split];
 
                                     foreach (array_keys($this->_splits[$split]) as $col) {
-                                        $colValues = $cols[$col];
+                                        $colValues = isset($cols[$col]) ? $cols[$col] : null;
                                         foreach ($this->_columnValues as $_k) {
                                             $k = ($_k instanceof Pivot_Callback || $_k instanceof Pivot_Count) ? $_k->getKey() : $_k;
                                             if ($_k instanceof Pivot_Count) {
@@ -544,7 +544,7 @@ class Pivot
                                             } elseif ($_k instanceof Pivot_Callback) {
                                                 $value = $_k->cbk($colValues);
                                             } else {
-                                                $value = $colValues[$k];
+                                                $value = isset($colValues[$k]) ? $colValues[$k] : null;
                                             }
                                             $_out["{$split}"] = $value;
                                             if ($this->_lineTotal) {
