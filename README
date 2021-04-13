@@ -1,5 +1,10 @@
 A class to pivot tables in PHP
 
+To install
+```
+composer require nielbuys/gam-pivot
+```
+
 Usage examples:
 
 pivot on 'host'
