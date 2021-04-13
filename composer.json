@@ -12,5 +12,6 @@
     "autoload": {
         "classmap": ["Pivot.php"],
         "files": ["Pivot.php"]
-    }
+    },
+	"license": ["GPL-3.0-only"],
 }
