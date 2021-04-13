@@ -9,20 +9,27 @@ Usage examples:
 
 pivot on 'host'
 
+```
 $data = Pivot::factory($recordset)
     ->pivotOn(array('host'))
     ->addColumn(array('year', 'month'), array('users', 'clicks',))
     ->fetch();
+```
+
 pivot on 'host' with totals
 
+```
 $data = Pivot::factory($recordset)
     ->pivotOn(array('host'))
     ->addColumn(array('year', 'month'), array('users', 'clicks',))
     ->fullTotal()
     ->lineTotal()
     ->fetch();
+```
+
 pivot on 'host' and 'country'
 
+```
 $data = Pivot::factory($recordset)
     ->pivotOn(array('host', 'country'))
     ->addColumn(array('year', 'month'), array('users', 'clicks',))
@@ -30,8 +37,11 @@ $data = Pivot::factory($recordset)
     ->pivotTotal()
     ->lineTotal()
     ->fetch();
+```
+
 pivot on 'host' and 'country' with calculated columms
 
+```
 $averageCbk = function($reg)
 {
     return round($reg['clicks']/$reg['users'],2);
@@ -45,8 +55,11 @@ $data = Pivot::factory($recordset)
     ->fullTotal()
     ->typeMark()
     ->fetch();
+```
+
 pivot on ‘host’ and ‘country’ with group count
 
+```
 $data = Pivot::factory($recordset)
     ->pivotOn(array('host', 'country'))
     ->addColumn(array('year', 'month'), array('users', 'clicks', Pivot::count('count')))
@@ -54,8 +67,11 @@ $data = Pivot::factory($recordset)
     ->pivotTotal()
     ->lineTotal()
     ->fetch();
+```
+
 The original recordset:
 
+```
 $recordset = array(
     array('host' => 1, 'country' => 'fr', 'year' => 2010, 'month' => 1, 'clicks' => 123, 'users' => 4),
     array('host' => 1, 'country' => 'fr', 'year' => 2010, 'month' => 2, 'clicks' => 134, 'users' => 5),
@@ -69,3 +85,4 @@ $recordset = array(
     array('host' => 3, 'country' => 'es', 'year' => 2010, 'month' => 3, 'clicks' => 34,  'users' => 2),
     array('host' => 3, 'country' => 'es', 'year' => 2010, 'month' => 4, 'clicks' => 1,   'users' => 1),
 );
+```
