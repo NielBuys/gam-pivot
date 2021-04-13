@@ -2,6 +2,7 @@
     "name": "nielbuys/gam-pivot",
     "type": "library",
     "description" : "A fork of gonzalo123/gam-pivot",
+	"license": ["LGPL-3.0-or-later"],
     "authors": [
         {"name": "Niel Buys"}
     ],
@@ -12,6 +13,5 @@
     "autoload": {
         "classmap": ["Pivot.php"],
         "files": ["Pivot.php"]
-    },
-	"license": ["GPL-3.0-only"],
+    }
 }
