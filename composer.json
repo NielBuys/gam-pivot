@@ -1,0 +1,16 @@
+{
+    "name": "NielBuys/gam-pivot",
+    "type": "library",
+    "description" : "A fork of gonzalo123/gam-pivot",
+    "authors": [
+        {"name": "Niel Buys"}
+    ],
+    "repositories" : [{
+        "type": "vcs",
+        "url": "https://github.com/NielBuys/gam-pivot"
+    }],
+    "autoload": {
+        "classmap": ["Pivot.php"],
+        "files": ["Pivot.php"]
+    }
+}
